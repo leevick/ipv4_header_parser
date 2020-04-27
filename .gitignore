@@ -1,0 +1,15 @@
+*.runs
+*.cache
+*.hw
+*.ip_user_files
+*.log
+*.jou
+.Xil
+*.ui
+!*.xci
+!*.wcfg
+!*.prj
+!*.xml
+!*.tcl
+!*.v
+*.sim
