@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root MajorVersion="0" MinorVersion="37">
+  <CompositeFile CompositeFileTopName="ipv4_header_parser_sim" CanBeSetAsTop="true" CanDisplayChildGraph="true">
+    <Description>Composite Fileset</Description>
+    <Generation Name="SYNTHESIS" State="RESET" Timestamp="1587973408"/>
+    <Generation Name="IMPLEMENTATION" State="RESET" Timestamp="1587973408"/>
+    <Generation Name="SIMULATION" State="RESET" Timestamp="1587973408"/>
+    <Generation Name="HW_HANDOFF" State="RESET" Timestamp="1587973408"/>
+    <FileCollection Name="SOURCES" Type="SOURCES">
+      <File Name="ip/ipv4_header_parser_sim_ipv4_header_parser_0_0/ipv4_header_parser_sim_ipv4_header_parser_0_0.xci" Type="IP">
+        <Instance HierarchyPath="ipv4_header_parser_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/ipv4_header_parser_sim_clk_gen_sim_0_0/ipv4_header_parser_sim_clk_gen_sim_0_0.xci" Type="IP">
+        <Instance HierarchyPath="clk_gen_sim_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/ipv4_header_parser_sim_axis_file_loader_0_0/ipv4_header_parser_sim_axis_file_loader_0_0.xci" Type="IP">
+        <Instance HierarchyPath="axis_file_loader_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/ipv4_header_parser_sim_xlconstant_0_0/ipv4_header_parser_sim_xlconstant_0_0.xci" Type="IP">
+        <Instance HierarchyPath="xlconstant_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/ipv4_header_parser_sim_ethernet_mac_parser_0_0/ipv4_header_parser_sim_ethernet_mac_parser_0_0.xci" Type="IP">
+        <Instance HierarchyPath="ethernet_mac_parser_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+    </FileCollection>
+  </CompositeFile>
+</Root>

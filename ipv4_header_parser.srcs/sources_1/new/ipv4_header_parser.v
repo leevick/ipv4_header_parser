@@ -38,6 +38,7 @@ module ipv4_header_parser(
     output m_tvalid,
     input m_tready,
 
+    output[15:0] tot_len,
     output[7:0] proto,
     output[31:0] src,
     output[31:0] dst,
@@ -52,31 +53,33 @@ module ipv4_header_parser(
     parameter PAUSE = 2;
     parameter TRANSFER = 3;
 
-    (*KEEP = "TRUE"*)integer state = IDLE,state_prev = IDLE,state_next = IDLE;
+    integer state = IDLE,state_prev = IDLE,state_next = IDLE;
 
-    (*KEEP = "TRUE"*)reg[63:0] s_tdata_ibuf = 0;
-    (*KEEP = "TRUE"*)reg[7:0] s_tkeep_ibuf = 0;
+    reg[63:0] s_tdata_ibuf = 0;
+    reg[7:0] s_tkeep_ibuf = 0;
 
-    (*KEEP = "TRUE"*)reg[7:0] proto_buf = 0;
-    (*KEEP = "TRUE"*)reg[31:0] src_buf = 0;
-    (*KEEP = "TRUE"*)reg[31:0] dst_buf = 0;
-    (*KEEP = "TRUE"*)reg[15:0] src_port_buf = 0;
-    (*KEEP = "TRUE"*)reg[15:0] dst_port_buf = 0;
+    reg[15:0] tot_len_buf = 0;
+    reg[7:0] proto_buf = 0;
+    reg[31:0] src_buf = 0;
+    reg[31:0] dst_buf = 0;
+    reg[15:0] src_port_buf = 0;
+    reg[15:0] dst_port_buf = 0;
 
-    (*KEEP = "TRUE"*)reg proto_load = 0;
-    (*KEEP = "TRUE"*)reg src_load = 0;
-    (*KEEP = "TRUE"*)reg dst_load_0 = 0;
-    (*KEEP = "TRUE"*)reg dst_load_1 = 0;
-    (*KEEP = "TRUE"*)reg src_port_load = 0;
-    (*KEEP = "TRUE"*)reg dst_port_load = 0;
-    (*KEEP = "TRUE"*)reg completed_buf = 0;
-
-
-    (*KEEP = "TRUE"*)reg[15:0] cnt = 0;
-    (*KEEP = "TRUE"*)reg cnt_enb = 0;
-    (*KEEP = "TRUE"*)reg cnt_clr = 0;
+    reg proto_load = 0;
+    reg src_load = 0;
+    reg dst_load_0 = 0;
+    reg dst_load_1 = 0;
+    reg src_port_load = 0;
+    reg dst_port_load = 0;
+    reg tot_len_load = 0;
+    reg completed_buf = 0;
 
 
+    reg[15:0] cnt = 0;
+    reg cnt_enb = 0;
+    reg cnt_clr = 0;
+
+    assign tot_len = tot_len_buf;
     assign proto = proto_buf;
     assign src = src_buf;
     assign dst = dst_buf;
@@ -115,6 +118,10 @@ module ipv4_header_parser(
             dst_port_buf = 0;
         end else begin
 
+            if (tot_len_load == 1) begin
+                tot_len_buf = s_tdata_ibuf[15:0];
+            end
+
             if (proto_load == 1) begin
                 proto_buf[7:0] = s_tdata_ibuf[63:56];
             end
@@ -144,6 +151,7 @@ module ipv4_header_parser(
 
     always @(state or s_tvalid or s_tlast or cnt) begin
         state_next = state;
+        tot_len_load = 0;
         proto_load = 0;
         src_load = 0;
         dst_load_0 = 0;
@@ -161,6 +169,7 @@ module ipv4_header_parser(
                     cnt_enb = 1;
                     state_next = LOADING;
                     proto_load = 1;
+                    tot_len_load = 1;
                 end
             end
             LOADING:
